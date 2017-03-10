@@ -24,8 +24,7 @@ def write_issues(response, csvout):
             label_string = "%s, %s" % (label_string, label['name'])
         label_string = label_string[2:]
 
-        csvout.writerow([issue['number'], issue['title'].encode('utf-8'), issue['body'].encode('utf-8'), label_string.encode('utf-8'), issue['created_at'], issue['updated_at']])
-
+    csvout.writerow([issue['number'], issue['state'].encode('utf-8'), issue['title'].encode('utf-8'), issue['body'].encode('utf-8'), label_string.encode('utf-8'), issue['created_at'], issue['updated_at'], issue['assignee']['login']])
 
 def get_issues(url):
     kwargs = {
@@ -76,7 +75,7 @@ def process(csvout, url=ISSUES_FOR_REPO_URL):
 def main():
     csvfile = '%s-issues.csv' % (REPO.replace('/', '-'))
     csvout = csv.writer(open(csvfile, 'wb'))
-    csvout.writerow(('id', 'Title', 'Body', 'Labels', 'Created At', 'Updated At'))
+    csvout.writerow(('id', 'State', 'Title', 'Body', 'Labels', 'Created At', 'Updated At', 'Assignee'))
     process(csvout)
     csvfile.close()
 
