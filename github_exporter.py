@@ -20,11 +20,15 @@ def write_issues(response, csvout):
     for issue in response.json():
         labels = issue['labels']
         label_string = ''
+        try:
+            login = issue['assignee']['login']
+        except:
+            login = "not assigned"
         for label in labels:
             label_string = "%s, %s" % (label_string, label['name'])
         label_string = label_string[2:]
+        csvout.writerow([issue['number'], issue['state'].encode('utf-8'), issue['title'].encode('utf-8'), issue['body'].encode('utf-8'), label_string.encode('utf-8'), issue['created_at'], issue['updated_at'], login])
 
-    csvout.writerow([issue['number'], issue['state'].encode('utf-8'), issue['title'].encode('utf-8'), issue['body'].encode('utf-8'), label_string.encode('utf-8'), issue['created_at'], issue['updated_at'], issue['assignee']['login']])
 
 def get_issues(url):
     kwargs = {
@@ -80,5 +84,5 @@ def main():
     csvfile.close()
 
 
-
 main()
+
