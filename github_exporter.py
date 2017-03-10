@@ -6,7 +6,7 @@ I've mainly cleaned up the code into basic methods, and included the
 various suggestions in the comments. Hope this is useful to someone.
 
 Make sure you have `requests` and `csv` installed via pip then run it:
-`python export_gh_issues_to_csv.py`
+`python issue-exporter.py`
 
 ---
 
