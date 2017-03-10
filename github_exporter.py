@@ -1,3 +1,5 @@
+# Credits to @marcelkornblum https://gist.github.com/marcelkornblum/21be3c13b2271d1d5a89bf08cbfa500e
+
 import csv
 import requests
 
